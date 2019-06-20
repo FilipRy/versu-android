@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/clickable_content</item>
+        <item name="colorPrimaryDark">@color/clickable_content</item>
+        <item name="colorAccent">@color/clickable_content</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+        <item name="android:textColor">@color/non_clickable_content</item>
+    </style>
+
+</resources>

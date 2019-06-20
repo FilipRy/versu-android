@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/possibilityItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_medium">
+
+    <com.like.LikeButton
+        android:id="@+id/choose_button"
+        android:layout_width="@dimen/feedback_action_size"
+        android:layout_height="@dimen/feedback_action_size"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/margin_tiny"
+        android:visibility="invisible"
+        app:icon_size="@dimen/feedback_action_size"
+        app:like_drawable="@drawable/check_circle"
+        app:unlike_drawable="@drawable/check_circle_outline" />
+
+    <io.github.rockerhieu.emojicon.EmojiconTextView
+        android:id="@+id/possibility_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="love"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/post_possibility_text_size" />
+
+    <TextView
+        android:id="@+id/thumbs_up_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/possibility_name"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/margin_tiny"
+        android:text="5"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/clickable_content" />
+
+
+</RelativeLayout>

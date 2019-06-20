@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_foreground_color"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/generalViewTitle"
+        layout="@layout/recycler_view_item_post_general_title" />
+
+    <RelativeLayout
+        android:id="@+id/photoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/generalViewTitle">
+
+        <include
+            android:id="@+id/generalViewPhoto"
+            layout="@layout/recycler_view_item_simple_post_general_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <RelativeLayout
+            android:id="@+id/possibilityLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/generalViewPhoto"
+            android:layout_alignTop="@+id/generalViewPhoto"
+            android:background="@android:color/black">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/voting_poss_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/item_short_comments_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photoLayout"
+        android:layout_marginBottom="@dimen/shopping_item_comment_top_bottom_margin" />
+
+</RelativeLayout>

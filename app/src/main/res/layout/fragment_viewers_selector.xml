@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_foreground_color">
+
+    <TextView
+        android:id="@+id/visibilityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/set_post_visibility"
+        android:textColor="@color/non_clickable_content" />
+
+
+    <belka.us.androidtoggleswitch.widgets.ToggleSwitch
+        android:id="@+id/viewersSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/visibilityTextView"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/text_size_post_visibility"
+        custom:activeBgColor="@color/clickable_content"
+        custom:activeTextColor="@android:color/white"
+        custom:inactiveBgColor="@android:color/white"
+        custom:inactiveTextColor="@android:color/black"
+        custom:separatorColor="@color/gray_very_light"
+        custom:toggleWidth="100dp" />
+
+
+    <include
+        android:id="@+id/mainLayout"
+        layout="@layout/fragment_refreshable_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewersSelector"
+        android:layout_marginTop="@dimen/margin_small" />
+
+
+</RelativeLayout>

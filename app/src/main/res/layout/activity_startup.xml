@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/app_bg">
+
+    <!-- Login progress -->
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.robohorse.pagerbullet.PagerBullet
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/continue_to_app"
+            android:background="@color/app_bg"
+            app:panelHeightInDp="@dimen/onboarding_panel_height" />
+
+        <TextView
+            android:id="@+id/errorMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:text="error"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/error_red"
+            android:visibility="gone" />
+
+
+        <Button
+            android:id="@+id/continue_to_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_view_sliding_tab_height"
+            android:text="@string/action_continue_to_app"
+            android:layout_alignParentBottom="true"
+            android:background="@color/clickable_content"
+            android:textColor="@android:color/white"
+            android:layout_alignParentLeft="true" />
+    </RelativeLayout>
+
+</LinearLayout>

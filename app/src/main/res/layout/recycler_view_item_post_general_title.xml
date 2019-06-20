@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/shopperImageView"
+        android:layout_width="@dimen/user_profile_photo_size"
+        android:layout_height="@dimen/user_profile_photo_size"
+        android:layout_marginBottom="@dimen/gap_top_over_post_profile_photo"
+        android:layout_marginLeft="@dimen/shopping_item_elems_side_margin"
+        android:layout_marginTop="@dimen/gap_top_over_post_profile_photo"
+        android:src="@mipmap/ic_account_circle_white" />
+
+    <TextView
+        android:id="@+id/shopperNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/shopperImageView"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_toRightOf="@+id/shopperImageView"
+        android:text="Name Surname"
+        android:textColor="@color/clickable_content"
+        android:textSize="@dimen/username_text_size"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/accessTypeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/shopperNameText"
+        android:layout_toLeftOf="@+id/contextMenuBtn"
+        android:src="@drawable/ic_public" />
+
+
+    <ImageView
+        android:id="@+id/contextMenuBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dots_vertical"
+        android:layout_alignBottom="@+id/shopperNameText"
+        android:layout_alignParentRight="true"
+        android:paddingRight="@dimen/margin_small"
+        android:paddingLeft="@dimen/margin_small"/>
+
+
+    <TextView
+        android:id="@+id/shoppingItemAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopperNameText"
+        android:layout_alignLeft="@id/shopperNameText"
+        android:layout_marginTop="1dp"
+        android:text="45 minutes ago"
+        android:textColor="@color/non_clickable_content" />
+
+    <TextView
+        android:id="@+id/shoppingItemLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/shoppingItemAge"
+        android:layout_marginLeft="@dimen/margin_tiny"
+        android:layout_toRightOf="@id/shoppingItemAge"
+        android:singleLine="true"
+        android:text="Eurovea, Pribinova, Bratislava, Slovakia"
+        android:textColor="@color/clickable_content" />
+
+</RelativeLayout>

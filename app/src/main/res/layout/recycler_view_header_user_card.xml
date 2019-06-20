@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profile_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_bg">
+
+    <RelativeLayout
+        android:id="@+id/profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="@dimen/profile_photo_size"
+            android:layout_height="@dimen/profile_photo_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:src="@mipmap/ic_account_circle_white_48dp" />
+
+
+        <TextView
+            android:id="@+id/usernameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_photo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:text="your name"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/non_clickable_content"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usernameText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:text="Your city"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickable_content" />
+
+        <io.github.rockerhieu.emojicon.EmojiconTextView
+            android:id="@+id/quoteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:gravity="center"
+            android:text="Some quote here"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/non_clickable_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/following_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_header">
+
+        <TextView
+            android:id="@+id/followersCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:text="111"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickable_content" />
+
+        <TextView
+            android:id="@+id/followersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_tiny"
+            android:layout_toRightOf="@+id/followersCountText"
+            android:text="@string/followers"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickable_content" />
+
+        <TextView
+            android:id="@+id/followingsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:layout_toLeftOf="@+id/followingCountText"
+            android:text="@string/followings"
+
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickable_content" />
+
+        <TextView
+            android:id="@+id/followingCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_small"
+            android:text="111"
+
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickable_content" />
+
+        <Button
+            android:id="@+id/headerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/follow"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/tab_unselected_text"
+        android:layout_below="@+id/following_header"/>
+
+</RelativeLayout>

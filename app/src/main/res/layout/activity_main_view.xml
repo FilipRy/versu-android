@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.filip.versu.view.MainViewActivity">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.filip.versu.view.custom.NonSwipeableViewPager
+                android:id="@+id/mainViewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/viewPagerTab"
+                android:layout_marginLeft="@dimen/main_view_side_margin"
+                android:layout_marginRight="@dimen/main_view_side_margin" />
+
+            <View
+                android:id="@+id/bottomShadow"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/shadow"
+                android:layout_above="@+id/viewPagerTab">
+            </View>
+
+
+            <com.filip.versu.view.custom.SlidingTabLayout
+                android:id="@+id/viewPagerTab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_view_sliding_tab_height"
+                android:layout_alignParentBottom="true"
+                android:background="@color/tab_bg" />
+
+
+        </RelativeLayout>
+    </FrameLayout>
+
+</RelativeLayout>

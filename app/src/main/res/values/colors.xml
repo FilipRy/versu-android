@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="app_foreground_color">#ffffff</color>
+
+    <!--background of all tabs in the app-->
+    <color name="tab_bg">#ffffff</color>
+
+    <color name="app_bg">#f8f8f8</color>
+
+
+    <color name="error_red">#e53935</color>
+
+    <!--background of onboarding slides + share post fragment bg-->
+    <color name="tutorial_background">#bb000000</color>
+
+
+    <!-- main menu tabs icon color -->
+    <color name="tab_home_underline">#9963EC</color>
+    <color name="tab_search_underline">#7681F5</color>
+    <color name="tab_camera_underline">#51A7EE</color>
+    <color name="tab_notification_underline">#4BBABA</color>
+    <color name="tab_profile_underline">#5FCD8F</color>
+
+
+    <color name="non_clickable_content">#444444</color>
+    <color name="clickable_content">#357396</color>
+
+    <!--text color of non selected top tab-->
+    <color name="tab_unselected_text">#9b9b9b</color>
+
+    <!--color of # and vs placeholder in hashtags-->
+    <color name="hashtag_vs">#9b9b9b</color>
+
+    <!--divider between hashtags and comments in posts-->
+    <color name="post_photo_comments_divider">#d1d3d1</color>
+
+    <!--notifications section-->
+    <color name="notification_divider">#e6e6e6</color>
+    <color name="notification_unread_bg">#dfefef</color>
+
+    <color name="gallery_drop_down_button_bg">#bbACB6BB</color>
+
+</resources>

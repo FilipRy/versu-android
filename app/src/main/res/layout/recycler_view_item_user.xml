@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userRowParent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_foreground_color"
+    android:padding="@dimen/recycler_view_item_user_padding">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_profile_photo"
+        android:layout_width="@dimen/user_profile_photo_size"
+        android:layout_height="@dimen/user_profile_photo_size"
+        android:layout_marginLeft="@dimen/shopping_item_elems_side_margin"
+        android:layout_marginTop="@dimen/shopping_item_elems_top_margin"
+        android:layout_marginBottom="@dimen/shopping_item_elems_top_margin"
+        android:src="@mipmap/ic_account_circle_white"/>
+
+
+    <TextView
+        android:id="@+id/user_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/user_profile_photo"
+        android:layout_centerVertical="true"
+        android:text="Name Surname"
+        android:textSize="@dimen/username_text_size"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:textColor="@color/clickable_content"/>
+
+</RelativeLayout>

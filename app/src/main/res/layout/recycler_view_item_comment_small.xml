@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/commentatorNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name Surname"
+        android:textColor="@color/clickable_content"
+        android:textSize="@dimen/username_text_size"
+        android:layout_marginTop="@dimen/shopping_item_comment_top_bottom_margin"
+        android:layout_marginBottom="@dimen/shopping_item_comment_top_bottom_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/commentatorNameView"
+        android:layout_toRightOf="@+id/commentatorNameView"
+        android:text=":"
+        android:layout_marginBottom="@dimen/shopping_item_comment_top_bottom_margin"
+        android:textColor="@color/clickable_content"/>
+
+    <io.github.rockerhieu.emojicon.EmojiconTextView
+        android:id="@+id/commentContentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/commentatorNameView"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_toRightOf="@+id/commentatorNameView"
+        android:text="should I buy this ?"
+        android:singleLine="true"
+        android:textColor="@color/non_clickable_content"
+        android:textSize="@dimen/username_text_size" />
+
+</RelativeLayout>

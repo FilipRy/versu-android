@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_foreground_color"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/margin_large">
+
+        <io.github.rockerhieu.emojicon.EmojiconEditText
+            android:id="@+id/postDescEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/post_create_description_hint">
+
+            <requestFocus />
+
+        </io.github.rockerhieu.emojicon.EmojiconEditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_foreground_color">
+
+
+    <ImageView
+        android:id="@+id/onboardingImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/onboardingTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_48dp"
+        android:src="@mipmap/onboarding_ask" />
+
+    <TextView
+        android:id="@+id/onboardingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/onboardingDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:gravity="center"
+        android:text="@string/ask_title"
+        android:textColor="@color/tab_home_underline"
+        android:textSize="@dimen/onboarding_title_text_size" />
+
+    <TextView
+        android:id="@+id/onboardingDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/onboarding_panel_height"
+        android:gravity="center"
+        android:text="@string/ask_text"
+        android:textColor="@color/tab_unselected_text"
+        android:textSize="@dimen/onboarding_desc_text_size" />
+
+
+</RelativeLayout>

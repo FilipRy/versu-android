@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/notification_unread_bg"
+    android:padding="@dimen/recycler_view_item_user_padding">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/notification_user_photo"
+        android:layout_width="@dimen/user_profile_photo_size"
+        android:layout_height="@dimen/user_profile_photo_size"
+        android:layout_marginBottom="@dimen/shopping_item_elems_top_margin"
+        android:layout_marginTop="@dimen/shopping_item_elems_top_margin"
+        android:layout_marginLeft="@dimen/shopping_item_elems_side_margin"
+        android:src="@mipmap/ic_account_circle_white" />
+
+    <TextView
+        android:id="@+id/user_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/notification_user_photo"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_toRightOf="@+id/notification_user_photo"
+        android:text="Name Surname"
+        android:textColor="@color/clickable_content"
+        android:textSize="@dimen/username_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/notification_text_others"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/user_username"
+        android:layout_marginLeft="@dimen/margin_tiny"
+        android:layout_toRightOf="@+id/user_username"
+        android:text="and 11 others"
+        android:textColor="@color/non_clickable_content"
+        android:textSize="@dimen/username_text_size" />
+
+
+    <RelativeLayout
+        android:id="@+id/thumbnail_double_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/notification_user_photo"
+        android:layout_marginRight="@dimen/shopping_item_elems_side_margin"
+        android:visibility="invisible">
+
+        <com.filip.versu.view.custom.SquareImageView
+            android:id="@+id/thumbnail_double1"
+            android:layout_width="@dimen/notification_photo_size_double"
+            android:layout_height="@dimen/notification_photo_size_double"/>
+
+        <com.filip.versu.view.custom.SquareImageView
+            android:id="@+id/thumbnail_double2"
+            android:layout_width="@dimen/notification_photo_size_double"
+            android:layout_height="@dimen/notification_photo_size_double"
+            android:layout_below="@+id/thumbnail_double1"/>
+
+    </RelativeLayout>
+
+
+    <com.filip.versu.view.custom.SquareImageView
+        android:id="@+id/thumbnail_simple"
+        android:layout_width="@dimen/notification_photo_size"
+        android:layout_height="@dimen/notification_photo_size"
+        android:layout_alignRight="@+id/thumbnail_double_layout"
+        android:layout_alignTop="@+id/thumbnail_double_layout"/>
+
+    <TextView
+        android:id="@+id/notification_text_below"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/user_username"
+        android:layout_below="@+id/user_username"
+        android:text="voted on your post"
+        android:textColor="@color/non_clickable_content"
+        android:textSize="@dimen/username_text_size" />
+
+    <TextView
+        android:id="@+id/notificationAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/notification_text_below"
+        android:layout_below="@id/notification_text_below"
+        android:text="45 minutes ago"
+        android:textColor="@color/tab_unselected_text" />
+
+
+</RelativeLayout>

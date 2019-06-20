@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <size
+        android:width="@dimen/recycler_view_item_device_photo_height"
+        android:height="@dimen/recycler_view_item_device_photo_height" />
+
+    <solid android:color="@color/app_bg" />
+</shape>

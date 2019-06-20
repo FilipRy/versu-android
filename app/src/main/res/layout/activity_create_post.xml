@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tutorialContainerFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.filip.versu.view.CreatePostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/containerFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation"
+            android:layout_alignParentTop="true">
+
+        </FrameLayout>
+
+        <View
+            android:id="@+id/bottomShadow"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/shadow"
+            android:layout_above="@+id/navigation">
+        </View>
+
+        <RelativeLayout
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_view_sliding_tab_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/tab_bg">
+
+            <ImageView
+                android:id="@+id/leftArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:padding="@dimen/margin_small"
+                app:srcCompat="@drawable/arrow_left" />
+
+            <ImageView
+                android:id="@+id/takePhotoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/margin_small"
+                app:srcCompat="@drawable/camera_clickable_color"/>
+
+            <ImageView
+                android:id="@+id/rightArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:padding="@dimen/margin_small"
+                app:srcCompat="@drawable/arrow_right" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

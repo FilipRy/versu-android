@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_foreground_color"
+    android:orientation="vertical">
+
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/slidingUpPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="85dp"
+        sothree:umanoScrollableView="@+id/recyclerViewDevicePhotos"
+        sothree:umanoShadowHeight="4dp">
+
+
+        <RelativeLayout
+            android:id="@+id/postPhotosLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/devicePhotosView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8">
+
+            <ProgressBar
+                android:id="@+id/load_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/recyclerViewDevicePhotos"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_huge"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewDevicePhotos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_small"
+                android:scrollbars="vertical" />
+
+            <ImageView
+                android:id="@+id/hideGalleryButton"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:src="@drawable/arrow_down_drop_circle_bg" />
+
+        </RelativeLayout>
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+
+</FrameLayout>

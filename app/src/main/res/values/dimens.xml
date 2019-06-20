@@ -1,0 +1,125 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <dimen name="text_size_post_visibility">12dp</dimen>
+
+    <dimen name="onboarding_panel_height">50dp</dimen>
+
+    <dimen name="margin_48dp">48dp</dimen>
+
+
+
+
+    <!-- MainView -->
+    <dimen name="main_view_side_margin">0dp</dimen>
+
+    <dimen name="underline_selected_tab_height">4dp</dimen>
+
+    <!-- shopping feed -->
+    <dimen name="shopping_feed_corners_radius">11dp</dimen>
+
+
+    <!-- shopping item in shopping feed -->
+
+    <dimen name="user_profile_photo_size">38dp</dimen>
+    <dimen name="username_text_size">17dp</dimen>
+
+
+    <dimen name="location_primary_text_size">18dp</dimen>
+    <dimen name="location_sec_text_size">15dp</dimen>
+
+    <dimen name="gap_between_desc_photos">15dp</dimen>
+    <dimen name="gap_top_over_post_profile_photo">8dp</dimen>
+
+    <dimen name="shopping_item_elems_side_margin">15dp</dimen>
+    <!-- left margin of shopping item's desc, right margin of shopping item's star ... -->
+    <dimen name="shopping_item_elems_top_margin">4dp</dimen>
+
+    <!-- feedback action icon size -->
+    <dimen name="feedback_action_size">28dp</dimen>
+
+    <dimen name="shopping_item_comment_top_bottom_margin">2dp
+    </dimen> <!-- shopping_item_elems_top_margin/2 -->
+
+    <dimen name="notification_photo_size">50dp</dimen>
+    <dimen name="notification_photo_size_double">30dp</dimen>
+
+    <!-- shopping item  photo -->
+    <dimen name="shopping_item_photo_width">195dp</dimen> <!-- 4/3 = height / width -->
+    <dimen name="shopping_item_photo_height">260dp</dimen>
+
+    <!-- == shopping_item_photo_height + voting_shopping_item_selector_circle_radius_half + 10dp () -->
+
+    <!-- feedback_action_bg_circle_radius - 30dp -->
+    <!-- this should be at least 1.5 *  shopping_item_likes_count_circle_size-->
+
+
+    <!-- voting shopping item photo -->
+    <dimen name="voting_shopping_item_photo_side_margin">1dp</dimen>
+
+
+    <!-- top tabs -->
+    <dimen name="space_between_text_image">10dp</dimen>
+    <dimen name="tab_underline_height">3dp</dimen>
+    <dimen name="top_tab_height">30dp</dimen>
+
+    <!-- bottom tabs -->
+    <dimen name="main_view_sliding_tab_height">40dp</dimen>
+
+    <!-- the sliding tabs in MainViewActivity -->
+    <!-- margin_small + main_view_sliding_tab_indicator_thickness -->
+
+    <!-- header photo circle -->
+    <dimen name="header_photo_circle_diameter">52dp</dimen>
+    <dimen name="header_photo_circle_margin">4dp</dimen>8
+    <dimen name="header_photo_circle_margin_top">2dp</dimen>
+    <!--this margin >= header_photo_circle_selected_border -->
+    <dimen name="header_photo_circle_border">1dp</dimen>
+    <dimen name="header_photo_circle_selected_border">2dp</dimen>
+    <dimen name="header_photo_circle_rounded_corners_side_offset">2dp</dimen>
+
+    <dimen name="refreshable_view_progress_bar_margin_top">10dp</dimen>
+
+
+    <!-- user item of recycler view -->
+    <dimen name="recycler_view_item_user_padding">3dp</dimen>
+    <!-- device photos in recycler view -->
+    <dimen name="recycler_view_item_device_photo_height">80dp</dimen>
+
+    <dimen name="recycler_view_device_photos_height">120dp</dimen>
+
+    <!-- camera height -->
+    <dimen name="camera_height">520dp</dimen>
+    <!-- shopping_item_photo_height * 2 -->
+    <dimen name="camera_width">400dp</dimen>
+    <!-- voting_shopping_item_photo_width * 2 -->
+
+
+    <!-- user profile photo size -->
+    <dimen name="profile_photo_size">100dp</dimen>
+
+
+    <dimen name="post_visibility_selector_height">35dp</dimen>
+
+
+    <dimen name="post_possibility_text_size">40dp</dimen>
+
+
+    <dimen name="post_vs_divider_height">1dp</dimen>
+    <dimen name="post_vs_radius_size">15dp</dimen>
+
+    <dimen name="post_vs_text_size">20dp</dimen>
+
+    <dimen name="onboarding_title_text_size">50dp</dimen>
+    <dimen name="onboarding_desc_text_size">17dp</dimen>
+
+</resources>

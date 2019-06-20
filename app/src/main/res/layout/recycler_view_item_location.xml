@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/locationPrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:singleLine="true"
+        android:text="Eurovea, Bratislava"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/location_primary_text_size" />
+
+    <TextView
+        android:id="@+id/locationSecondaryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/locationPrimaryTextView"
+        android:layout_alignRight="@+id/locationPrimaryTextView"
+        android:layout_below="@+id/locationPrimaryTextView"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:singleLine="true"
+        android:text="Bratislava, Slovakia"
+        android:textColor="@color/non_clickable_content"
+        android:textSize="@dimen/location_sec_text_size" />
+
+</RelativeLayout>

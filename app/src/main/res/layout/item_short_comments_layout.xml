@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/possibilitiesLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/shopping_item_elems_side_margin"
+        android:layout_marginRight="@dimen/shopping_item_elems_side_margin"
+        android:layout_marginTop="@dimen/gap_between_desc_photos">
+
+        <io.github.rockerhieu.emojicon.EmojiconTextView
+            android:id="@+id/possibilitiesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="#love_itVSlike_it"
+            android:textColor="@color/clickable_content"
+            android:textSize="@dimen/username_text_size" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_below="@id/possibilitiesTextView"
+            android:background="@color/post_photo_comments_divider"/>
+
+    </RelativeLayout>
+
+    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/comment"
+        android:layout_width="@dimen/feedback_action_size"
+        android:layout_height="@dimen/feedback_action_size"
+        android:layout_below="@+id/possibilitiesLayout"
+        android:layout_marginLeft="@dimen/shopping_item_elems_side_margin"
+        android:clickable="true"
+        app:srcCompat="@drawable/comment" />
+
+    <io.github.rockerhieu.emojicon.EmojiconTextView
+        android:id="@+id/commentContentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/possibilitiesLayout"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/shopping_item_elems_side_margin"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:layout_toRightOf="@+id/comment"
+        android:text="should I buy this ?"
+        android:textColor="@color/non_clickable_content"
+        android:textSize="@dimen/username_text_size" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/comment"
+        android:layout_below="@+id/commentContentView"
+        android:layout_marginBottom="@dimen/shopping_item_elems_top_margin"
+        android:layout_marginRight="@dimen/shopping_item_elems_side_margin"
+        android:layout_marginTop="@dimen/margin_small" />
+
+</RelativeLayout>

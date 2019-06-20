@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_foreground_color"
+    android:orientation="vertical"
+    tools:context=".view.MainViewActivity">
+
+    <include
+        android:id="@+id/generalView"
+        layout="@layout/recycler_view_item_post_general_title" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPhotos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/generalView" />
+
+
+    <include
+        layout="@layout/item_short_comments_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recyclerViewPhotos"
+        android:layout_marginBottom="@dimen/shopping_item_comment_top_bottom_margin" />
+
+</RelativeLayout>

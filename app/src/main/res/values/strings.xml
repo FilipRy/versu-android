@@ -1,0 +1,266 @@
+<resources>
+    <string name="app_name">Versu</string>
+
+    
+    <string name="app_slogan">snap a dilemma\nand let the world\ndecide</string>
+
+    
+    <string name="facebook_app_id">223725951340040</string>
+
+    <string name="my_profile">my profile</string>
+
+
+    <string name="load_more">load more</string>
+
+
+    <!-- top tabs -->
+    <string name="timeline">timeline</string>
+    <string name="nearby">nearby</string>
+
+    <string name="my_votes">my votes</string>
+
+    <string name="nothing_to_show">Nothing to show</string>
+
+    <string name="nothing_to_show_in_my_votes">When you vote on someone\'s post those posts will appear here.</string>
+    <string name="nothing_to_show_in_my_profile">No dilemmas yet</string>
+    <string name="nothing_to_show_in_post_votes">No one voted for </string>
+    <string name="nothing_to_show_in_comment">Be the first who comments here</string>
+    <string name="nothing_to_show_in_followers">You have no followers.</string>
+    <string name="nothing_to_show_in_followings">You don\'t follow anyone.</string>
+
+    <string name="shopping_item_photo">Photo</string>
+
+    <string name="notifications">notifications</string>
+
+    <string name="and">and</string>
+    <string name="others">others</string>
+    <string name="voted_on_your_post">voted on your post</string>
+    <string name="commented_on_your_post">commented on your post</string>
+    <string name="started_following_you">started following you</string>
+    <string name="need_your_help">needs your help</string>
+
+    <string name="comments">comments</string>
+
+    <string name="comment_text_view_hint">Type your comment here</string>
+    <string name="search_users_text_view_hint">Search people</string>
+
+    <string name="people">people</string>
+    <string name="camera">camera</string>
+
+    <string name="search">search</string>
+    <string name="search_user_prompt">Type username</string>
+    <string name="search_place_prompt">Try typing Bratislava</string>
+    <string name="search_posts_prompt">Try typing loveVSlike</string>
+
+    <string name="places">places</string>
+
+    <string name="creating">creating</string>
+
+    <string name="stop_following_dialog_title">Unfollow ?</string>
+    <string name="stop_following_dialog_text">Stop following</string>
+
+    <string name="follow">follow</string>
+
+    <string name="following">following</string>
+
+    <string name="remove">remove</string>
+
+    <string name="followers">followers</string>
+    <string name="followings">following</string>
+
+    <string name="posts">posts</string>
+
+    <string name="at">at</string>
+
+    <string name="report">report</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+
+    <string name="update_chosen_state_dialog_title">Already decided ?</string>
+    <string name="update_chosen_state_dialog_text">By clicking yes, you close the voting</string>
+
+    <string name="delete_favourite_dialog_title">Delete favourite</string>
+    <string name="delete_favourite_dialog_text">Do you want to remove your favourite ?</string>
+
+    <string name="delete_post_feedback_dialog_title">Delete feedback</string>
+    <string name="delete_post_feedback_dialog_text">Do you want to remove your feedback ?</string>
+
+
+    <string name="delete_post_dialog_title">Delete post</string>
+    <string name="delete_post_dialog_text">Are you sure ?</string>
+
+    <string name="on">On</string>
+    <string name="off">Off</string>
+
+    <string name="auto">Auto</string>
+
+    <!-- login view -->
+    <string name="allow_facebook_login">You need to allow login with facebook.</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_location">Where do you live ?</string>
+
+    <string name="action_continue_to_app">Continue to app</string>
+
+    <string name="error_field_required">This field is required</string>
+
+    <string name="login">Login</string>
+
+    <string name="no_account_create_one">No account yet? Create one</string>
+
+    <string name="login_with_facebook">Login with Facebook</string>
+
+
+    <!-- start up actvitiy -->
+    <string name="starting">Starting</string>
+
+
+    <string name="location">Location</string>
+    <string name="location_preference_desc">Tap to add location</string>
+
+    <string name="add_location">Add a location</string>
+    <string name="set_post_visibility">Who can see your post ?</string>
+
+    <string name="add_location_btn">Add location</string>
+    <string name="ignore_location">I don\'t want to add location</string>
+
+
+    <string name="followers_visibility">followers</string>
+    <string name="public_visibility">everyone</string>
+    <string name="specific_visibility">specific</string>
+
+
+
+    <!-- create post -->
+    <string name="gallery">gallery</string>
+
+    <string name="optional">optional</string>
+    <string name="create_post_success">Post created successfully</string>
+
+    <string name="possibilityA">this</string>
+    <string name="possibilityB">that</string>
+
+    <string name="invalid_desc">Description is too long</string>
+    <string name="invalid_access_type">Post visibility not specified</string>
+    <string name="invalid_photos">Add at least one photo to your post</string>
+    <string name="invalid_photos_still_loading">Please wait a couple of seconds, photos are being added to your post</string>
+    <string name="invalid_possibilities">Enter two possibilities for voting</string>
+    <string name="invalid_same_possibilities">The possibilities have to be different</string>
+    <string name="invalid_possibilities_too_long">Entered possibilities are too long</string>
+
+    <string name="invalid_location">Tap ignore location, or specify a location of the post</string>
+
+    <string name="allow_read_photos">You need to enable permission to create post.</string>
+    <string name="allow_read_photos_explanation">Versu needs the permission to display your photos for you.</string>
+    <string name="allow_access_location">I need your location to display nearby questions to you.</string>
+
+    <string name="allow_camera">If you want to use app camera, you need to grant the permission.</string>
+
+    <string name="location_unavailable">Your location is not available</string>
+
+    <string name="suggestions">Suggestions</string>
+
+    <!-- create post hints -->
+    <string name="post_create_description_hint">You can ask a question here</string>
+    <string name="post_create_choose_photos_hint">Choose one or two photos from your gallery bellow</string>
+    <string name="post_create_possibilities_hint">Enter possibilities of your choice, so other people can vote for them</string>
+
+    <string name="got_it">Got it</string>
+
+    <string name="prompt_post_location">Choose location</string>
+
+
+    <string name="post_share_fragment_title">Want to share with someone outside the app ?</string>
+
+    <string name="post_popup_menu_share">share with link</string>
+
+    <string name="generate_new_link_button">generate link</string>
+    <string name="remove_link_button">remove link</string>
+
+    <string name="no_shareable_link">This post has no shareable link</string>
+
+    <string name="remove_secret_link_dialog_title">Remove link</string>
+    <string name="remove_secret_link_dialog_text">People lose access to the post through this link.</string>
+
+    <string name="generate_secret_link_dialog_title">Generate a new link</string>
+    <string name="generate_secret_link_dialog_text">Generating a new link invalidates the current one</string>
+
+    <!-- settings activity -->
+    <string name="settings">Settings</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="change_username_prompt">Tap to change username</string>
+    <string name="change_email_prompt">Tap to change mail</string>
+
+    <string name="quote">Quote</string>
+    <string name="tap_to_add_quote">Tap to add quote</string>
+
+    <string name="updating">Updating</string>
+    <string name="updated_successfully">Successfully updated</string>
+
+
+    <string name="log_out">Log out</string>
+    <string name="log_out_dialog_question">Do you want to log out ?</string>
+    <string name="log_out_success_message">You have been successfully loged out</string>
+
+
+    <!-- notifications -->
+    <string name="notification_new_vote_title">New vote!</string>
+    <string name="notification_new_comment_title">New comment!</string>
+    <string name="notification_new_post_title">New post!</string>
+    <string name="notification_new_follower_title">New follower!</string>
+
+
+    <!-- time helpers -->
+    <string name="Jan">Jan</string>
+    <string name="Feb">Feb</string>
+    <string name="Mar">Mar</string>
+    <string name="Apr">Apr</string>
+    <string name="May">May</string>
+    <string name="Jun">Jun</string>
+    <string name="Jul">Jul</string>
+    <string name="Aug">Aug</string>
+    <string name="Sep">Sep</string>
+    <string name="Oct">Oct</string>
+    <string name="Nov">Nov</string>
+    <string name="Dec">Dec</string>
+
+    <string name="day">day</string>
+    <string name="days">days</string>
+
+    <string name="hour">hour</string>
+    <string name="hours">hours</string>
+
+    <string name="minute">minute</string>
+    <string name="minutes">minutes</string>
+
+    <string name="ago">ago</string>
+
+
+    <string name="minutes_ago"> minutes ago</string>
+
+    <!-- camera fragment -->
+    <string name="error_taking_photo">An error occured while taking the photo.</string>
+    <string name="error_saving_photo">An error occured while saving the photo.</string>
+
+
+    <!-- intro  -->
+    <string name="ask_title">ask</string>
+    <string name="ask_text">use pictures to ask \n about anything</string>
+
+    <string name="vote_title">vote</string>
+    <string name="vote_text">help your friends \n to decide</string>
+
+    <string name="discover_title">discover</string>
+    <string name="discover_text">find similar question \n in your area</string>
+
+    <!-- sign up and sign in -->
+    <string name="password">Password</string>
+    <string name="already_member_login">Already a member? Login</string>
+    <string name="create_account">Create Account</string>
+
+</resources>
+
