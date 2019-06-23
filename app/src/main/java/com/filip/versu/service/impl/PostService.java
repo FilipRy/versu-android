@@ -47,7 +47,8 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
     private static IUserSession userSession = UserSession.instance();
     private static IPostService shoppingItemService;
 
-    private static final String BUCKET_URL = "https://s3-eu-west-1.amazonaws.com/versu-app/";
+
+    private static final String BUCKET_URL = "https://versu-app.s3.eu-central-1.amazonaws.com/";
 
     public static final String LOCATION_UNKNOWN_ERROR = "LOCATION_UNKNOWN_ERROR";
 

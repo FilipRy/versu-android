@@ -28,7 +28,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="INSERT AN API KEY HERE" />
+            android:value="ADD AN API KEY HERE" />
 
         <activity
             android:name="com.filip.versu.view.MainViewActivity"
