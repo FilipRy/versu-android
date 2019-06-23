@@ -47,7 +47,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
     private static IUserSession userSession = UserSession.instance();
     private static IPostService shoppingItemService;
 
-    private static final String BUCKET_URL = "https://s3-eu-west-1.amazonaws.com/dress-me-test1/";
+    private static final String BUCKET_URL = "https://s3-eu-west-1.amazonaws.com/versu-app/";
 
     public static final String LOCATION_UNKNOWN_ERROR = "LOCATION_UNKNOWN_ERROR";
 
@@ -58,7 +58,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
 
             int index = 0;
             for (PostPhotoDTO photoDTO : create.photos) {
-                final String objectName = userSession.getLogedInUser().getId() + Long.toString(System.currentTimeMillis() + index++);
+                final String objectName = userSession.getLogedInUser().getId() + "_" + System.currentTimeMillis() + "_" + index++;
 
                 URLWrapperDTO.PhotoObject photoObject = new URLWrapperDTO.PhotoObject();
                 photoObject.key = objectName;
@@ -80,7 +80,6 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
                 String signedURL = signedURLs.urls.get(i);
                 PostPhotoDTO photoDTO = create.photos.get(i);
 
-
                 URL url = new URL(signedURL);
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setDoOutput(true);
@@ -93,11 +92,11 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
                 BitmapCompressionService.compressBitmapToOutputStream(photoDTO, reqDimens,
                         connection.getOutputStream());
 
-
                 connection.getOutputStream().close();
 
                 int serverResponseCode = connection.getResponseCode();
-                Log.i(TAG, "Persist photo response: " + serverResponseCode);
+                Log.i(TAG, "Persist photo response code: " + serverResponseCode);
+                Log.i(TAG, "Persist photo response message: " + connection.getResponseMessage());
 
                 File f = new File(photoDTO.path);//deleting temporary photo
                 f.delete();
