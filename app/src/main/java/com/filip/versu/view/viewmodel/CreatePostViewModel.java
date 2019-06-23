@@ -172,15 +172,21 @@ public class CreatePostViewModel extends AbstractViewModel<ICreatePostViewModelC
 
             //create temporary photo
             File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + System.currentTimeMillis() + (index++) + ".jpg");
+            FileOutputStream out = null;
             try {
-
-                FileOutputStream out = new FileOutputStream(f);
+                out = new FileOutputStream(f);
                 bmOverlay.compress(Bitmap.CompressFormat.JPEG, 100, out);
 
-                out.flush();
-                out.close();
             } catch (IOException e) {
                 Log.i(TAG, e.getMessage());
+            } finally {
+                try {
+                    if (out != null) {
+                        out.flush();
+                        out.close();
+                    }
+                } catch (IOException e) {
+                }
             }
 
             bmp.recycle();

@@ -2,7 +2,7 @@ package com.filip.versu.service.impl.abs;
 
 import android.util.Log;
 
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.NoAccessTokenException;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.dto.abs.BaseDTO;
@@ -37,7 +37,7 @@ public abstract class AbsGeneralService<K extends BaseDTO<L>, L> implements IAbs
             if (e.getMessage() != null) {
                 Log.i(TAG, e.getMessage());
             }
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -49,7 +49,7 @@ public abstract class AbsGeneralService<K extends BaseDTO<L>, L> implements IAbs
             return item;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -61,7 +61,7 @@ public abstract class AbsGeneralService<K extends BaseDTO<L>, L> implements IAbs
             return true;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.filip.versu.R;
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.Location;
 import com.filip.versu.model.dto.CommentDTO;
@@ -31,6 +31,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,10 +91,19 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
                 BitmapCompressionService.TwoDimensional reqDimens = new BitmapCompressionService.TwoDimensional(
                         BitmapCompressionService.NEW_POST_PHOTO_REQ_WIDTH,
                         BitmapCompressionService.NEW_POST_PHOTO_REQ_HEIGHT);
-                BitmapCompressionService.compressBitmapToOutputStream(photoDTO, reqDimens,
-                        connection.getOutputStream());
 
-                connection.getOutputStream().close();
+
+                File fTest = new File("/storage/emulated/0/15612993611330.jpg");
+                boolean exists = fTest.exists();
+
+                try {
+                    BitmapCompressionService.compressBitmapToOutputStream(photoDTO, reqDimens, connection.getOutputStream());
+                } catch (FileNotFoundException e) {
+                    Log.e(TAG, "Photo hasnt been found on the device");
+                    throw new Exception("Photo hasnt been found on the device");
+                } finally {
+                    connection.getOutputStream().close();
+                }
 
                 int serverResponseCode = connection.getResponseCode();
                 Log.i(TAG, "Persist photo response code: " + serverResponseCode);
@@ -104,14 +114,14 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
                 if (serverResponseCode == 200) {
                     photoDTO.path = BUCKET_URL + signedURLs.objectKeys.get(i).key;
                 } else {
-                    throw new ExceptionMapper().createServiceExceptionFromMessage("Photo not persist to storage");
+                    throw new ServiceExceptionMapper().createServiceExceptionFromException(new ServiceException("Photo not persist to storage"));
                 }
             }
 
             return super.create(create);
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -132,7 +142,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return shoppingItemPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -149,7 +159,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return postPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -172,7 +182,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return postSpringPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -188,7 +198,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return postSpringPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -202,7 +212,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return vsPossibilities;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -215,7 +225,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return postDTO;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -239,7 +249,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return userProfileDTO;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -252,7 +262,7 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             return new ArrayList<>(userDTOList);
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

@@ -2,7 +2,7 @@ package com.filip.versu.service.impl;
 
 import android.util.Log;
 
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.dto.JWTWrapperDTO;
 import com.filip.versu.model.dto.UserDTO;
@@ -47,7 +47,7 @@ public class UserService extends AbsGeneralService<UserDTO, Long> implements IUs
             return item;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -94,7 +94,7 @@ public class UserService extends AbsGeneralService<UserDTO, Long> implements IUs
             return loggedInUser;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -106,7 +106,7 @@ public class UserService extends AbsGeneralService<UserDTO, Long> implements IUs
             return userDTO;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -121,7 +121,7 @@ public class UserService extends AbsGeneralService<UserDTO, Long> implements IUs
             return userPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -133,7 +133,7 @@ public class UserService extends AbsGeneralService<UserDTO, Long> implements IUs
             return userDTO;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

@@ -72,9 +72,9 @@ public class CreatePostActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
-        leftArrow = (ImageView) findViewById(R.id.leftArrow);
-        rightArrow = (ImageView) findViewById(R.id.rightArrow);
-        cameraBtn = (ImageView) findViewById(R.id.takePhotoBtn);
+        leftArrow = findViewById(R.id.leftArrow);
+        rightArrow = findViewById(R.id.rightArrow);
+        cameraBtn = findViewById(R.id.takePhotoBtn);
 
         leftArrow.setImageResource(R.drawable.arrow_left);
         rightArrow.setImageResource(R.drawable.arrow_right);
@@ -193,6 +193,7 @@ public class CreatePostActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == REQUEST_CAMERA_CODE && resultCode == Activity.RESULT_OK) {
             if (createPostPhotosFragment != null) {
                 DevicePhoto devicePhoto = new DevicePhoto();

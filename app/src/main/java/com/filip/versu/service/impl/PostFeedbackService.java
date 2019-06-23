@@ -2,7 +2,7 @@ package com.filip.versu.service.impl;
 
 import android.util.Log;
 
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.dto.PostDTO;
 import com.filip.versu.model.dto.PostFeedbackPossibilityDTO;
@@ -48,7 +48,7 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
             return fixReferences(springPage.getContent());
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -79,7 +79,7 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
             return fixReferences(springPage.getContent());
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

@@ -5,9 +5,10 @@ import com.filip.versu.service.impl.PostService;
 /**
  * Created by Filip on 4/14/2016.
  */
-public class ExceptionMapper {
+public class ServiceExceptionMapper {
 
-    public ServiceException createServiceExceptionFromMessage(String message) {
+    public ServiceException createServiceExceptionFromException(Exception e) {
+        String message = e.toString();
         message = message.toUpperCase();
 
         if ((message.contains("CONNECTEXCEPTION") && message.contains("FAILED TO CONNECT")) || message.contains(("Unable to resolve host").toUpperCase())) {
@@ -27,7 +28,7 @@ public class ExceptionMapper {
 //                return new ServiceException("Your chosen email is already associated with some account");
 //            }
 
-            return new ServiceException("Something went wrong refresh the feed a try again");
+            return new ServiceException("Something went wrong refresh the feed and try again");
         } else if (message.contains("403") && message.contains("FORBIDDEN")) {
             return new ServiceException("You are not allowed to perform this action");
         } else if (message.contains("412") && message.contains("PRECONDITION FAILED")) {
@@ -35,7 +36,7 @@ public class ExceptionMapper {
         } else if (message.contains(PostService.LOCATION_UNKNOWN_ERROR)) {
             return new ServiceException("Your location is not available! Turn on location and restart app.");
         } else {
-            return new ServiceException("Error occured, try again!");
+            return new ServiceException("Some error occurred, try again!");
         }
     }
 

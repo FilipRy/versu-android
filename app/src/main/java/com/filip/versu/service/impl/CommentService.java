@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.filip.versu.R;
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.dto.CommentDTO;
 import com.filip.versu.model.dto.PostDTO;
@@ -50,7 +50,7 @@ public class CommentService extends AbsGeneralService<CommentDTO, Long> implemen
             return fixReferences(springPage.getContent());
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class CommentService extends AbsGeneralService<CommentDTO, Long> implemen
             return fixReferences(springPage.getContent());
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

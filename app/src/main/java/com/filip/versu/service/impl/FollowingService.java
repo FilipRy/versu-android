@@ -2,7 +2,7 @@ package com.filip.versu.service.impl;
 
 import android.util.Log;
 
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.dto.FollowingDTO;
 import com.filip.versu.service.IFollowingService;
@@ -32,7 +32,7 @@ public class FollowingService extends AbsGeneralService<FollowingDTO, Long> impl
             return followingDTOPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -49,7 +49,7 @@ public class FollowingService extends AbsGeneralService<FollowingDTO, Long> impl
             return followingDTOPage.getContent();
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

@@ -43,8 +43,13 @@ public class CreatePostPhotosFragment
 
     public static final String TAG = CreatePostPhotosFragment.class.getSimpleName();
 
-    public static final int MY_REQUEST_READ_EXTERNAL_STORAGE = 47;
+    public static final int MY_REQUEST_PERMISSIONS = 47;
 
+
+    private static final String[] PERMISSIONS = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
 
 //    private EventBus eventBus = EventBus.getDefault();
 
@@ -116,7 +121,7 @@ public class CreatePostPhotosFragment
         });
 
 
-        checkReadExternalStoragePermission();
+        checkReadAndWriteExternalStoragePermission();
 
         /**
          * adding photos to recycler view, if returning to this fragment
@@ -252,35 +257,26 @@ public class CreatePostPhotosFragment
         devicePhotosView.smoothScrollToPosition(0);
     }
 
-    private void checkReadExternalStoragePermission() {
+    private void checkReadAndWriteExternalStoragePermission() {
 
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                Toast.makeText(getActivity(), R.string.allow_read_photos_explanation, Toast.LENGTH_LONG).show();
+        boolean granted = true;
+        for (String permission: PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(getActivity(), permission) != PackageManager.PERMISSION_GRANTED) {
+                granted = false;
             }
+        }
 
-
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    MY_REQUEST_READ_EXTERNAL_STORAGE);
-
-        } else {
+        if (granted) {
             getViewModel().requestLoadingAllDeviceImages(getActivity());
+        } else {
+            requestPermissions(PERMISSIONS, MY_REQUEST_PERMISSIONS);
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_REQUEST_READ_EXTERNAL_STORAGE: {
+            case MY_REQUEST_PERMISSIONS: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

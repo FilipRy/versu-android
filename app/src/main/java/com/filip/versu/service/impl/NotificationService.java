@@ -2,7 +2,7 @@ package com.filip.versu.service.impl;
 
 import android.util.Log;
 
-import com.filip.versu.exception.ExceptionMapper;
+import com.filip.versu.exception.ServiceExceptionMapper;
 import com.filip.versu.exception.ServiceException;
 import com.filip.versu.model.dto.NotificationDTO;
 import com.filip.versu.model.dto.UserDTO;
@@ -35,7 +35,7 @@ public class NotificationService extends AbsGeneralService<NotificationDTO, Long
             return new ArrayList<>(notificationDTOs);
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 
@@ -47,7 +47,7 @@ public class NotificationService extends AbsGeneralService<NotificationDTO, Long
             return wasUpdated;
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new ExceptionMapper().createServiceExceptionFromMessage(e.toString());
+            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
     }
 

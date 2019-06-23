@@ -155,6 +155,7 @@
 
     <string name="allow_read_photos">You need to enable permission to create post.</string>
     <string name="allow_read_photos_explanation">Versu needs the permission to display your photos for you.</string>
+    <string name="allow_write_photos_explanation">Versu needs the permission to compress a photo locally before sending it to Versu servers.</string>
     <string name="allow_access_location">I need your location to display nearby questions to you.</string>
 
     <string name="allow_camera">If you want to use app camera, you need to grant the permission.</string>
