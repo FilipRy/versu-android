@@ -261,6 +261,11 @@ public class UserSession implements IUserSession {
 
     @Override
     public String getAccessTokenOfLoggedInUser() throws NoAccessTokenException {
+        if (this.loggedInUser == null) {
+            throw new NoAccessTokenException("No user is logged in");
+        } else if (this.loggedInUser.jwtWrapper == null) {
+            throw new NoAccessTokenException("No access token is associated with you, log out and in again pls");
+        }
         return this.loggedInUser.jwtWrapper.access_token;
     }
 

@@ -25,30 +25,20 @@ public class NotificationService extends AbsGeneralService<NotificationDTO, Long
 
     @Override
     public List<NotificationDTO> findForUser(UserDTO userDTO, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/user/" + userDTO.getId();
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            NotificationDTO[] notifications = (NotificationDTO[]) retrieveObject(url, HttpMethod.GET, NotificationDTO[].class);
-            List<NotificationDTO> notificationDTOs = Arrays.asList(notifications);
-            return new ArrayList<>(notificationDTOs);
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/user/" + userDTO.getId();
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        NotificationDTO[] notifications = (NotificationDTO[]) retrieveObject(url, HttpMethod.GET, NotificationDTO[].class);
+        List<NotificationDTO> notificationDTOs = Arrays.asList(notifications);
+        return new ArrayList<>(notificationDTOs);
     }
 
     @Override
     public boolean markAsSeen(NotificationDTO notificationDTO) throws ServiceException {
-        try {
-            final String url = getServiceEndpointURL() + "/" + notificationDTO.getId() + "/seen";
-            Boolean wasUpdated = (Boolean) retrieveObject(url, HttpMethod.GET, Boolean.class);
-            return wasUpdated;
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
-        }
+        final String url = getServiceEndpointURL() + "/" + notificationDTO.getId() + "/seen";
+        Boolean wasUpdated = (Boolean) retrieveObject(url, HttpMethod.GET, Boolean.class);
+        return wasUpdated;
     }
 
     @Override
@@ -77,7 +67,7 @@ public class NotificationService extends AbsGeneralService<NotificationDTO, Long
         throw new UnsupportedOperationException();
     }
 
-    public static INotificationService instance(){
+    public static INotificationService instance() {
         if (notificationService == null) {
             notificationService = new NotificationService();
         }

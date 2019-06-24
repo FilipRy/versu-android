@@ -32,6 +32,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,35 +56,38 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
 
     @Override
     public PostDTO create(PostDTO create) throws ServiceException {
-        try {
-            URLWrapperDTO urlWrapperDTO = new URLWrapperDTO();
+        URLWrapperDTO urlWrapperDTO = new URLWrapperDTO();
 
-            int index = 0;
-            for (PostPhotoDTO photoDTO : create.photos) {
-                final String objectName = userSession.getLogedInUser().getId() + "_" + System.currentTimeMillis() + "_" + index++;
+        int index = 0;
+        for (PostPhotoDTO photoDTO : create.photos) {
+            final String objectName = userSession.getLogedInUser().getId() + "_" + System.currentTimeMillis() + "_" + index++;
 
-                URLWrapperDTO.PhotoObject photoObject = new URLWrapperDTO.PhotoObject();
-                photoObject.key = objectName;
-                photoObject.contentType = "image/jpeg";
-                urlWrapperDTO.objectKeys.add(photoObject);
-            }
+            URLWrapperDTO.PhotoObject photoObject = new URLWrapperDTO.PhotoObject();
+            photoObject.key = objectName;
+            photoObject.contentType = "image/jpeg";
+            urlWrapperDTO.objectKeys.add(photoObject);
+        }
 
-            final String requestPreSignedURL = getServiceEndpointURL() + "/generatePreSignedURL";
+        final String requestPreSignedURL = getServiceEndpointURL() + "/generatePreSignedURL";
 
-            HttpHeaders httpHeaders = RestTemplateFactory.createRequestHeadersWithUserAccessToken();
-            HttpEntity<URLWrapperDTO> httpEntity = new HttpEntity<>(urlWrapperDTO, httpHeaders);
-            ResponseEntity<URLWrapperDTO> responseEntity = (ResponseEntity<URLWrapperDTO>) sendRequestToBackend(requestPreSignedURL, HttpMethod.POST, httpEntity, URLWrapperDTO.class);
+        HttpHeaders httpHeaders = RestTemplateFactory.createRequestHeadersWithUserAccessToken();
+        HttpEntity<URLWrapperDTO> httpEntity = new HttpEntity<>(urlWrapperDTO, httpHeaders);
+        ResponseEntity<URLWrapperDTO> responseEntity = (ResponseEntity<URLWrapperDTO>) sendRequestToBackend(requestPreSignedURL, HttpMethod.POST, httpEntity, URLWrapperDTO.class);
 
-            URLWrapperDTO signedURLs = responseEntity.getBody();
+        URLWrapperDTO signedURLs = responseEntity.getBody();
 
-            Log.i(TAG, "Persisting photo to Server storage");
+        Log.i(TAG, "Persisting photo to Server storage");
 
-            for (int i = 0; i < signedURLs.urls.size(); i++) {
-                String signedURL = signedURLs.urls.get(i);
-                PostPhotoDTO photoDTO = create.photos.get(i);
+        for (int i = 0; i < signedURLs.urls.size(); i++) {
+            String signedURL = signedURLs.urls.get(i);
+            PostPhotoDTO photoDTO = create.photos.get(i);
+
+            HttpsURLConnection connection = null;
+            int serverResponseCode = 0;
+            try {
 
                 URL url = new URL(signedURL);
-                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+                connection = (HttpsURLConnection) url.openConnection();
                 connection.setDoOutput(true);
                 connection.setRequestMethod("PUT");
                 connection.setRequestProperty("Content-Type", signedURLs.objectKeys.get(i).contentType);
@@ -92,37 +96,34 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
                         BitmapCompressionService.NEW_POST_PHOTO_REQ_WIDTH,
                         BitmapCompressionService.NEW_POST_PHOTO_REQ_HEIGHT);
 
+                BitmapCompressionService.compressBitmapToOutputStream(photoDTO, reqDimens, connection.getOutputStream());
 
-                File fTest = new File("/storage/emulated/0/15612993611330.jpg");
-                boolean exists = fTest.exists();
-
-                try {
-                    BitmapCompressionService.compressBitmapToOutputStream(photoDTO, reqDimens, connection.getOutputStream());
-                } catch (FileNotFoundException e) {
-                    Log.e(TAG, "Photo hasnt been found on the device");
-                    throw new Exception("Photo hasnt been found on the device");
-                } finally {
-                    connection.getOutputStream().close();
-                }
-
-                int serverResponseCode = connection.getResponseCode();
+                serverResponseCode = connection.getResponseCode();
                 Log.i(TAG, "Persist photo response code: " + serverResponseCode);
                 Log.i(TAG, "Persist photo response message: " + connection.getResponseMessage());
 
-                File f = new File(photoDTO.path);//deleting temporary photo
-                f.delete();
-                if (serverResponseCode == 200) {
-                    photoDTO.path = BUCKET_URL + signedURLs.objectKeys.get(i).key;
-                } else {
-                    throw new ServiceExceptionMapper().createServiceExceptionFromException(new ServiceException("Photo not persist to storage"));
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new ServiceException("Photo hasn't been persist to storage! Try again");
+            } finally {
+                if (connection != null) {
+                    try {
+                        connection.getOutputStream().close();
+                    } catch (IOException e) {
+                    }
                 }
             }
 
-            return super.create(create);
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+            File f = new File(photoDTO.path);//deleting temporary photo
+            f.delete();
+            if (serverResponseCode == 200) {
+                photoDTO.path = BUCKET_URL + signedURLs.objectKeys.get(i).key;
+            } else {
+                throw new ServiceException("Photo hasn't been persist to storage! Try again");
+            }
         }
+
+        return super.create(create);
     }
 
     @Override
@@ -132,138 +133,98 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
 
     @Override
     public List<PostDTO> findActiveForUserByTime(Long userID, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findForUser/" + userID + "/time";
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            PostSpringPage shoppingItemPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, PostSpringPage.class);
-            fixReferences(shoppingItemPage.getContent());
-            return shoppingItemPage.getContent();
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/findForUser/" + userID + "/time";
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        PostSpringPage shoppingItemPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, PostSpringPage.class);
+        fixReferences(shoppingItemPage.getContent());
+        return shoppingItemPage.getContent();
     }
 
     @Override
     public List<PostDTO> findNewsfeedByLocation(Long userID, Location location, Page<Long> page) throws ServiceException {
-        try {
-            if (location.isUnknown()) {
-                throw new ServiceException(LOCATION_UNKNOWN_ERROR);
-            }
-
-            final String url = getServiceEndpointURL() + "/findForUser/" + userID + "/location?lat=" + location.latitude + "&lng=" + location.longitude;
-            SpringPage.PostSpringPage postPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostSpringPage.class);
-            fixReferences(postPage.getContent());
-            return postPage.getContent();
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        if (location.isUnknown()) {
+            throw new ServiceException(LOCATION_UNKNOWN_ERROR);
         }
+
+        final String url = getServiceEndpointURL() + "/findForUser/" + userID + "/location?lat=" + location.latitude + "&lng=" + location.longitude;
+        SpringPage.PostSpringPage postPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostSpringPage.class);
+        fixReferences(postPage.getContent());
+        return postPage.getContent();
     }
 
     @Override
     public List<PostDTO> findByPossibilityNames(String[] possibilityName, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findByPossibilityNames?possA=" + possibilityName[0];
-            if (possibilityName.length > 1) {
-                if (possibilityName[1] != null) {
-                    url = url + "&possB=" + possibilityName[1];
-                }
+        String url = getServiceEndpointURL() + "/findByPossibilityNames?possA=" + possibilityName[0];
+        if (possibilityName.length > 1) {
+            if (possibilityName[1] != null) {
+                url = url + "&possB=" + possibilityName[1];
             }
-
-            if (page.getPageNr() > 0) {
-                url = url + "&page=" + page.getPageNr() + "&limit"+page.getPageSize();
-            }
-
-            PostSpringPage postSpringPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostSpringPage.class);
-            fixReferences(postSpringPage.getContent());
-            return postSpringPage.getContent();
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
         }
+
+        if (page.getPageNr() > 0) {
+            url = url + "&page=" + page.getPageNr() + "&limit" + page.getPageSize();
+        }
+
+        PostSpringPage postSpringPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostSpringPage.class);
+        fixReferences(postSpringPage.getContent());
+        return postSpringPage.getContent();
     }
 
     @Override
     public List<PostDTO> findByLocation(Location location, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findByLocationGoogleId/" + location.googleID;
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            PostSpringPage postSpringPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostSpringPage.class);
-            fixReferences(postSpringPage.getContent());
-            return postSpringPage.getContent();
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/findByLocationGoogleId/" + location.googleID;
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        PostSpringPage postSpringPage = (PostSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostSpringPage.class);
+        fixReferences(postSpringPage.getContent());
+        return postSpringPage.getContent();
     }
 
     @Override
     public List<String[]> findVSPossibilities(String pattern) throws ServiceException {
-        try {
+        String url = getServiceEndpointURL() + "/findVSPossibilities/" + pattern;
+        SpringPage.StringArrayList vsPossibilities = (SpringPage.StringArrayList) retrieveObject(url, HttpMethod.GET, SpringPage.StringArrayList.class);
 
-            String url = getServiceEndpointURL() + "/findVSPossibilities/" + pattern;
-            SpringPage.StringArrayList vsPossibilities = (SpringPage.StringArrayList) retrieveObject(url, HttpMethod.GET, SpringPage.StringArrayList.class);
-
-            return vsPossibilities;
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
-        }
+        return vsPossibilities;
     }
 
     @Override
     public PostDTO getShoppingItem(Long shoppingItemID) throws ServiceException {
-        try {
-            final String url = getServiceEndpointURL() + "/" + shoppingItemID;
-            PostDTO postDTO = (PostDTO) retrieveObject(url, HttpMethod.GET, PostDTO.class);
-            fixReferences(postDTO);
-            return postDTO;
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
-        }
+        final String url = getServiceEndpointURL() + "/" + shoppingItemID;
+        PostDTO postDTO = (PostDTO) retrieveObject(url, HttpMethod.GET, PostDTO.class);
+        fixReferences(postDTO);
+        return postDTO;
+
     }
 
     @Override
     public UserProfileDTO getUserProfile(Long id, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/userProfile/" + id;
+        String url = getServiceEndpointURL() + "/userProfile/" + id;
 
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-
-            UserProfileDTO userProfileDTO = (UserProfileDTO) retrieveObject(url, HttpMethod.GET, UserProfileDTO.class);
-
-            if (userSession.getLogedInUser().getId().equals(id)) {//if retrieving my profile
-                userSession.mergeWithLogedInUserData(userProfileDTO.userCard.userDTO);
-            }
-
-            fixReferences(userProfileDTO.userShoppingItems.getContent());
-
-            return userProfileDTO;
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+
+        UserProfileDTO userProfileDTO = (UserProfileDTO) retrieveObject(url, HttpMethod.GET, UserProfileDTO.class);
+
+        if (userSession.getLogedInUser().getId().equals(id)) {//if retrieving my profile
+            userSession.mergeWithLogedInUserData(userProfileDTO.userCard.userDTO);
+        }
+
+        fixReferences(userProfileDTO.userShoppingItems.getContent());
+
+        return userProfileDTO;
     }
 
     @Override
     public List<UserDTO> listViewersOfShoppingItem(Long id, Page<Long> page) throws ServiceException {
-        try {
-            final String url = getServiceEndpointURL() + "/viewers/" + id;
-            UserDTO[] userDTOs = (UserDTO[]) retrieveObject(url, HttpMethod.GET, UserDTO[].class);
-            List<UserDTO> userDTOList = Arrays.asList(userDTOs);
-            return new ArrayList<>(userDTOList);
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
-        }
+        final String url = getServiceEndpointURL() + "/viewers/" + id;
+        UserDTO[] userDTOs = (UserDTO[]) retrieveObject(url, HttpMethod.GET, UserDTO[].class);
+        List<UserDTO> userDTOList = Arrays.asList(userDTOs);
+        return new ArrayList<>(userDTOList);
     }
 
 
@@ -299,9 +260,9 @@ public class PostService extends AbsGeneralService<PostDTO, Long> implements IPo
             }
         }
 
-        if(postDTO.chosenFeedbackPossibility != null) {
-            for(PostFeedbackPossibilityDTO possibilityDTO: postDTO.postFeedbackPossibilities) {
-                if(possibilityDTO.getId().equals(postDTO.chosenFeedbackPossibility.getId())) {//cannot compare possibility on equality, because chosenPossibility.post = null always
+        if (postDTO.chosenFeedbackPossibility != null) {
+            for (PostFeedbackPossibilityDTO possibilityDTO : postDTO.postFeedbackPossibilities) {
+                if (possibilityDTO.getId().equals(postDTO.chosenFeedbackPossibility.getId())) {//cannot compare possibility on equality, because chosenPossibility.post = null always
                     postDTO.chosenFeedbackPossibility = possibilityDTO;
                     break;
                 }

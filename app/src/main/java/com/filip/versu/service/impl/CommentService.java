@@ -41,32 +41,22 @@ public class CommentService extends AbsGeneralService<CommentDTO, Long> implemen
 
     @Override
     public List<CommentDTO> findByUser(Long id, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findByUser/" + id;
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            CommentSpringPage springPage = (CommentSpringPage) retrieveObject(url, HttpMethod.GET, getSpringPageClass());
-            return fixReferences(springPage.getContent());
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/findByUser/" + id;
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        CommentSpringPage springPage = (CommentSpringPage) retrieveObject(url, HttpMethod.GET, getSpringPageClass());
+        return fixReferences(springPage.getContent());
     }
 
     @Override
     public List<CommentDTO> findByPost(Long id, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findByPost/" + id;
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            CommentSpringPage springPage = (CommentSpringPage) retrieveObject(url, HttpMethod.GET, getSpringPageClass());
-            return fixReferences(springPage.getContent());
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/findByPost/" + id;
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        CommentSpringPage springPage = (CommentSpringPage) retrieveObject(url, HttpMethod.GET, getSpringPageClass());
+        return fixReferences(springPage.getContent());
     }
 
     @Override

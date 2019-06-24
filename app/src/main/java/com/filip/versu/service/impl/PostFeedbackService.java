@@ -24,7 +24,7 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
     private static IPostFeedbackService postFeedbackService;
 
     public static IPostFeedbackService instance() {
-        if(postFeedbackService == null) {
+        if (postFeedbackService == null) {
             postFeedbackService = new PostFeedbackService();
         }
         return postFeedbackService;
@@ -39,25 +39,20 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
 
     @Override
     public List<PostFeedbackVoteDTO> findByUser(Long id, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findByUser/" + id;
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            SpringPage.PostFeedbackVoteSpringPage springPage = (SpringPage.PostFeedbackVoteSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostFeedbackVoteSpringPage.class);
-            return fixReferences(springPage.getContent());
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/findByUser/" + id;
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        SpringPage.PostFeedbackVoteSpringPage springPage = (SpringPage.PostFeedbackVoteSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostFeedbackVoteSpringPage.class);
+        return fixReferences(springPage.getContent());
     }
 
     @Override
     public List<PostDTO> findPostsByUser(Long id, Page<Long> page) throws ServiceException {
         List<PostFeedbackVoteDTO> retrievedItems = findByUser(id, page);
-        if(retrievedItems != null) {
+        if (retrievedItems != null) {
             List<PostDTO> postDTOs = new ArrayList<>();
-            for(PostFeedbackVoteDTO item: retrievedItems) {
+            for (PostFeedbackVoteDTO item : retrievedItems) {
                 item.feedbackPossibilityDTO.postDTO.myPostFeedback = item;
 
                 postDTOs.add(item.feedbackPossibilityDTO.postDTO);
@@ -70,17 +65,12 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
 
     @Override
     public List<PostFeedbackVoteDTO> findByFeedbackPossibility(Long id, Page<Long> page) throws ServiceException {
-        try {
-            String url = getServiceEndpointURL() + "/findByFeedbackPossibility/" + id;
-            if (page.getLastLoadedID() != null) {
-                url = url + "?lastId=" + page.getLastLoadedID();
-            }
-            SpringPage.PostFeedbackVoteSpringPage springPage = (SpringPage.PostFeedbackVoteSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostFeedbackVoteSpringPage.class);
-            return fixReferences(springPage.getContent());
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new ServiceExceptionMapper().createServiceExceptionFromException(e);
+        String url = getServiceEndpointURL() + "/findByFeedbackPossibility/" + id;
+        if (page.getLastLoadedID() != null) {
+            url = url + "?lastId=" + page.getLastLoadedID();
         }
+        SpringPage.PostFeedbackVoteSpringPage springPage = (SpringPage.PostFeedbackVoteSpringPage) retrieveObject(url, HttpMethod.GET, SpringPage.PostFeedbackVoteSpringPage.class);
+        return fixReferences(springPage.getContent());
     }
 
     @Override
@@ -96,20 +86,19 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
     }
 
 
-
-
     /**
      * This method receives the deserialized list of feedback actions and fixes the references between entities.
+     *
      * @param items
      * @return
      */
     @Override
     public List<PostFeedbackVoteDTO> fixReferences(List<PostFeedbackVoteDTO> items) {
-        if(items == null) {
+        if (items == null) {
             return items;
         }
 
-        for(PostFeedbackVoteDTO vote: items) {
+        for (PostFeedbackVoteDTO vote : items) {
             fixReferences(vote);
         }
         return items;
@@ -120,14 +109,13 @@ public class PostFeedbackService extends AbsGeneralService<PostFeedbackVoteDTO, 
 
         PostService.fixReferences(postDTO);
 
-        for(PostFeedbackPossibilityDTO possibilityDTO: postDTO.postFeedbackPossibilities) {
-            if(possibilityDTO.equals(vote.feedbackPossibilityDTO)) {
+        for (PostFeedbackPossibilityDTO possibilityDTO : postDTO.postFeedbackPossibilities) {
+            if (possibilityDTO.equals(vote.feedbackPossibilityDTO)) {
                 vote.feedbackPossibilityDTO = possibilityDTO;
             }
         }
         return vote;
     }
-
 
 
     @Override

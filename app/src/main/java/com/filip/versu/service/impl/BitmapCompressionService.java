@@ -21,8 +21,8 @@ public class BitmapCompressionService {
 
     public static final String TAG = BitmapCompressionService.class.getSimpleName();
 
-    public static final int NEW_POST_PHOTO_REQ_WIDTH = 600;
-    public static final int NEW_POST_PHOTO_REQ_HEIGHT = 800;
+    public static final int NEW_POST_PHOTO_REQ_WIDTH = 1200;
+    public static final int NEW_POST_PHOTO_REQ_HEIGHT = 1200;
     public static final int NEWSFEED_SIMPLE_POST_PHOTO_REQ_WIDTH = 1024;
     public static final int NEWSFEED_SIMPLE_POST_PHOTO_REQ_HEIGHT = 1024;
 
