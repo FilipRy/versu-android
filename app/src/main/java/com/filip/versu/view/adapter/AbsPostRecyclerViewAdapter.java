@@ -175,7 +175,7 @@ public abstract class AbsPostRecyclerViewAdapter extends AbsBaseEntityRecyclerVi
             }
 
 
-            imageViewComment.setImageResource(R.drawable.comment);//TODO this should be set in xml by app:srcCompat, but does not work
+            imageViewComment.setImageResource(R.drawable.comment);//TODO this should be set in xml via app:srcCompat, but does not work
 
             commentRecyclerViewAdapter = new SmallCommentRecyclerViewAdapter(postDTO.comments, context, iPostsFeedViewModel);
             shoppingItemCommentsView.setAdapter(commentRecyclerViewAdapter);
